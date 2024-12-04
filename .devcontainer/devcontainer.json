@@ -1,0 +1,18 @@
+{
+	"name": "SmartSetter JavaScript Utils",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": "../"
+	},
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			"settings": {},
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"editorconfig.editorconfig"
+			]
+		}
+	},
+	"remoteUser": "node"
+}
