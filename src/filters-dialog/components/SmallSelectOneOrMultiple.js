@@ -1,5 +1,5 @@
-import SmallAutocomplete from "../components/SmallAutoComplete"
-import SmallAutocompleteSelectMultiple from "../components/SmallAutoCompleteSelectMultiple"
+import SmallAutocomplete from "./SmallAutoComplete"
+import SmallAutocompleteSelectMultiple from "./SmallAutoCompleteSelectMultiple"
 import { broadcastPropertyChange } from "../utils"
 
 export default function SmallSelectOneOrMultiple({
