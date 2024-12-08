@@ -1,20 +1,24 @@
 import Grid from "@mui/material/Unstable_Grid2"
-import { createContext, useContext } from "react"
+import { createContext, useContext, useState, useEffect } from "react"
 
 import FilterTypeSmallAutoComplete from "../components/FilterTypeSmallAutoComplete"
 import SmallAutocomplete from "../components/SmallAutoComplete"
 import { IS_NOT_OPTION, IS_OPTION } from "../data"
 import { broadcastPropertyChange } from "../utils"
+import { noAuthAxios } from "../../common/axios"
 
 export default function MLSIDFilterBody({
   fieldConfig,
   onPropertyChanged,
   onConfigCompleteChanged,
 }) {
+
   const availableMLS = useContext(AvailableMLSContext)
+
   function isConfigComplete(newConfig) {
     return !!newConfig.type && !!newConfig.value
   }
+
   return (
     <>
       <Grid xs={4}>
@@ -53,3 +57,22 @@ export default function MLSIDFilterBody({
 }
 
 export const AvailableMLSContext = createContext([])
+
+export function useLoadAvailableMLS() {
+  const [availableMLS, setAvailableMLS] = useState([])
+  const [availableMlsLoaded, setAvailableMLSLoaded] = useState(false)
+
+  useEffect(() => {
+    noAuthAxios.get("/realitydb/api/available-mls/")
+    .then(({ data }) => {
+      setAvailableMLS(data)
+      setAvailableMLSLoaded(true)
+      return Promise.resolve(data)
+    })
+  }, [])
+
+  return {
+    availableMLS,
+    availableMlsLoaded
+  }
+}

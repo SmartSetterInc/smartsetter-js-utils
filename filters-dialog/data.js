@@ -1,3 +1,11 @@
+export class Filter {
+  constructor(fieldName, filterType, filterValue) {
+    this.field = fieldName
+    this.type = filterType
+    this.value = filterValue
+  }
+}
+
 export class FilterField {
   constructor(fieldName, label) {
     this.fieldName = fieldName
